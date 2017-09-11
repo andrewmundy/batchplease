@@ -70,7 +70,7 @@ button {
   border: none;
   font-size: 1.2rem;
   text-align: center;
-  margin: 1rem; }
+  margin: 0.2rem 1rem; }
 
 .plus {
   background: rgba(255, 255, 255, 0.5);

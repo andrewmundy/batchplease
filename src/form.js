@@ -182,9 +182,9 @@ class Form extends Component {
             type="number"
             min="0"
             id="drinkCount"
-            placeholder={this.state.ing1.count}
+            placeholder="72"
             name="ing1.count"
-            value={this.state.ing1.count}
+            value=""
             onChange={change}
           />
           <select
@@ -200,8 +200,8 @@ class Form extends Component {
           <input
             id="drinkname"
             name="ing1.name"
-            placeholder={this.state.ing1.name}
-            value={this.state.ing1.name}
+            placeholder="White Rum"
+            value=""
             onChange={change}
           />
         </div>
@@ -209,10 +209,66 @@ class Form extends Component {
         {/****************
         *** ING TWO ***
         ******************/}
+        <div className="form flex-between">
+          <input
+            type="number"
+            min="0"
+            id="drinkCount"
+            placeholder="36"
+            name="ing1.count"
+            value=""
+            onChange={change}
+          />
+          <select
+            id="select"
+            name="ing1.select"
+            className="select"
+            value={this.state.ing1.select}
+            onChange={change}
+          >
+            <option value="oz">oz</option>
+            <option value="dash">dash</option>
+          </select>
+          <input
+            id="drinkname"
+            name="ing1.name"
+            placeholder="Lime"
+            value=""
+            onChange={change}
+          />
+        </div>
 
         {/****************
         *** ING THREE ***
         ******************/}
+        <div className="form flex-between">
+          <input
+            type="number"
+            min="0"
+            id="drinkCount"
+            placeholder="18"
+            name="ing1.count"
+            value=""
+            onChange={change}
+          />
+          <select
+            id="select"
+            name="ing1.select"
+            className="select"
+            value={this.state.ing1.select}
+            onChange={change}
+          >
+            <option value="oz">oz</option>
+            <option value="dash">dash</option>
+          </select>
+          <input
+            id="drinkname"
+            name="ing1.name"
+            placeholder="Simple"
+            value=""
+            onChange={change}
+          />
+        </div>
 
         {/****************
         *** ING FOUR ***
@@ -249,7 +305,7 @@ class Form extends Component {
             </div>
             <div style={{textAlign : 'left'}}>
               <div>
-                {newCount * this.state.ing1.oz *1.04} fl oz {this.state.ing1.name}
+                {newCount * this.state.ing1.oz} fl oz {this.state.ing1.name}
                 <div className="small">{((newCount*this.state.ing1.oz)/25.5).toFixed(1)} bottles</div>
               </div>
               <div>
