@@ -5,45 +5,96 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drinkCount: 1,
-      select: "eaches",
-      drinkName: "Daiquiri",
-      drinkOz: 3.5,
-      isPlural: false,
-      count:0,
-      calculated:1,
-      ing1:{
-        "oz": "2",
-        "select": "Oz",
-        "name":"White Rum",
-      },
-      ing2:{
-        "oz": "1",
-        "select": "Oz",
-        "name":"Lime",
-      },
-      ing3:{
-        "oz": ".5",
-        "select": "Oz",
-        "name":"Simple",
-      },
-      ing4:{
-        "oz": 0,
-        "select": null,
-        "name":null,
-      },
-      ing5:{
-        "oz": 0,
-        "select": null,
-        "name":null,
-      },
-      ing6:{
-        "oz": 0,
-        "select": null,
-        "name":null,
-      }
+      drinkCount: 1, // 1
+      drinkIncrement: "Eaches", // Eaches =1, Gal=128, Punch=384
+      drinkName: "Daiquiri", //daiquiri
+
+      totalDrinks:1, // Eaches? "drinkCount" : drinkIncrement(gal) / totalOz
+      totalOz: 448, //drinkOz(3.5) * drinkIncrement(gal=128) * drinkCount(2) = 896
+      drinkOz: 3.5, // ing1 + ing2 + ing3 + ing4 + ing5 +ing6
+      isPlural: false, // totalDrink > 1 ?
+      dashOz: 0.02, //ingOz * 0.02
+
+      "ing1Oz": 2,
+      "ing1Inc": "Oz",
+      "ing1Name":"White Rum",
+      "ing1Ratio":0.57 , //ing1Oz / drinkOz
+
+      "ing2Oz": 1,
+      "ing2Inc": "Oz",
+      "ing2Name":"Lime",
+      "ing2Ratio":0.28,
+
+      "ing3Oz": 0.5,
+      "ing3Inc": "Oz",
+      "ing3Name":"Simple",
+      "ing3Ratio":0.14,
+
+      "ing4Oz": 0,
+      "ing4Inc": "",
+      "ing4Name":"",
+      "ing4Ratio":0 ,
+
+      "ing5Oz": 0,
+      "ing5Inc": "",
+      "ing5Name": "",
+      "ing5Ratio":0,
+
+      "ing6Oz": 0,
+      "ing6Inc": "",
+      "ing6Name":"",
+      "ing6Ratio":0,
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+  };
+
+  ratios(){
+    let drinkOz = this.state.drinkOz;
+    let ratio1 = this.state.ing1Oz / drinkOz;
+    let ratio2 = this.state.ing2Oz / drinkOz;
+    let ratio3 = this.state.ing3Oz / drinkOz;
+    let ratio4 = this.state.ing4Oz / drinkOz;
+    let ratio5 = this.state.ing5Oz / drinkOz;
+    let ratio6 = this.state.ing6Oz / drinkOz;
+
+    this.setState({
+      ing1Ratio:ratio1,
+      ing2Ratio:ratio2,
+      ing3Ratio:ratio3,
+      ing4Ratio:ratio4,
+      ing5Ratio:ratio5,
+      ing6Ratio:ratio6
+    });
+  };
+
+  totalOz(){
+    let drinkOz =
+      Number(this.state.ing1Oz) +
+      Number(this.state.ing2Oz) +
+      Number(this.state.ing3Oz) +
+      Number(this.state.ing4Oz) +
+      Number(this.state.ing5Oz) +
+      Number(this.state.ing6Oz)
+
+    this.setState({
+      drinkOz:drinkOz
+    });
+  };
+
+  totalDrinks(){
+    let totalDrinks = 0;
+
+    if (this.state.drinkIncrement === "Eaches"){
+      totalDrinks = this.state.drinkCount * this.state.drinkOz
+    }else if(this.state.drinkIncrement === "Gallon"){
+      totalDrinks = (this.state.drinkCount * 128)/this.state.drinkOz
+    }else if(this.state.drinkIncrement === "Punch Bowl"){
+      totalDrinks = (this.state.drinkCount * 320)/this.state.drinkOz
+    }
+
+    this.setState({
+      totalDrinks:totalDrinks,
+    });
   };
 
   handleInputChange(e) {
@@ -51,91 +102,40 @@ class Form extends Component {
     const value = target.value;
     const name = target.name;
 
-    let drinkOz =
-      Number(this.state.ing1.oz) +
-      Number(this.state.ing2.oz) +
-      Number(this.state.ing3.oz) +
-      Number(this.state.ing4.oz) +
-      Number(this.state.ing5.oz) +
-      Number(this.state.ing6.oz)
+    this.totalOz()
+    this.ratios()
+    this.totalDrinks()
 
-    if(name === "drinkCount"){
-      if(value > 1){
-        this.setState({
-          isPlural:true
-        })
-      }else{
-        this.setState({
-          isPlural:false
-        })
-      }
-    };
-
-    if(value === "eaches"){
-      this.setState({
-        calculated:1,
-        isPlural:false
-      })
-    }else if(value === "gal"){
-      this.setState({
-        calculated:128,
-        isPlural:true
-      })
-    }else if(value === "punch"){
-      this.setState({
-        calculated:384,
-        isPlural:false
-      })
-    };
-
-    if(name.slice(0,3) === "ing"){
-      this.setState({
-        [name]:[value]
-      })
-    }
     this.setState({
-      drinkOz:[drinkOz]
+      [name]: value
     });
-
-    this.setState({[name]: value});
   };
 
   newDrink() {
-    let select = this.state.select;
-    let size = this.state.drinkOz;
-    let count = this.state.drinkCount;
-    let drink = this.state.drinkName;
-    let calc = this.state.calculated;
-    let isPlur = this.state.isPlural;
+    let totalDrinks = 0;
 
-    let newCount = Math.floor((count * calc)/size);
-
-    let plur = "";
-
-    isPlur ? plur = "'s": plur = "";
-
-    if (select === "eaches") {
-      return count + " " + drink + plur;
-    } else{
-      return newCount + " " + drink + plur;
+    if (this.state.drinkIncrement === "Eaches"){
+      totalDrinks = this.state.drinkCount
+    }else if(this.state.drinkIncrement === "Gallon"){
+      totalDrinks = (this.state.drinkCount * 128)/this.state.drinkOz
+    }else if(this.state.drinkIncrement === "Punch Bowl"){
+      totalDrinks = (this.state.drinkCount * 320)/this.state.drinkOz
     }
+
+    let plural = "";
+    let newDrink = "";
+
+    this.state.isPlural ? plural = "'s" : plural = "";
+    newDrink = totalDrinks + " " + this.state.drinkName + plural;
+
+    return newDrink;
   };
 
-  render() {
-    let select = this.state.select;
-    let size = this.state.drinkOz;
-    let count = this.state.drinkCount;
-    let drink = this.state.drinkName;
-    let calc = this.state.calculated;
-    let isPlur = this.state.isPlural;
-    let change = this.handleInputChange;
-    let newCount = 1;
 
-    if(select != "eaches"){
-      newCount = Math.floor((count * calc)/size);
-    }else{
-      newCount = count;
-    }
+  render() {
+    let state = this.state;
+    let change = this.handleInputChange;
+
 
     return (
       <div className="flex-spacebetween flex-column">
@@ -144,32 +144,33 @@ class Form extends Component {
         {/****************
         *** DRINK NAME ***
         ******************/}
-          <div className="form flex-between">
+          <div className="form flex-between title">
             <input
+              id="drinkCount"
+              className="num"
               type="number"
               min="1"
-              id="drinkCount"
-              placeholder={count}
+              placeholder={state.drinkCount}
               name="drinkCount"
-              value={count}
+              value={state.drinkCount}
               onChange={change}
             />
             <select
               id="select"
-              name="select"
               className="select"
-              value={select}
+              name="drinkIncrement"
+              value={state.drinkIncrement}
               onChange={change}
             >
-              <option value="eaches">Eaches</option>
-              <option value="gal">Gal</option>
-              <option value="punch">Punch Bowl</option>
+              <option value="Eaches">Eaches</option>
+              <option value="Gallon">Gallon</option>
+              <option value="Punch Bowl">Punch Bowl</option>
             </select>
             <input
               id="drinkname"
               name="drinkName"
-              placeholder={drink}
-              value={drink}
+              placeholder={state.drinkName}
+              value={state.drinkName}
               onChange={change}
             />
           </div>
@@ -179,29 +180,31 @@ class Form extends Component {
         ******************/}
         <div className="form flex-between">
           <input
+            id="ing1Oz"
+            className="num"
             type="number"
             min="0"
-            id="drinkCount"
-            placeholder="72"
-            name="ing1.count"
-            value=""
+            name="ing1Oz"
+            step="0.5"
+            placeholder={state.ing1Oz}
+            value={state.ing1Oz}
             onChange={change}
           />
           <select
-            id="select"
-            name="ing1.select"
+            id="ing1Inc"
             className="select"
-            value={this.state.ing1.select}
+            name="ing1Inc"
+            value={state.ing1Inc}
             onChange={change}
           >
             <option value="oz">oz</option>
             <option value="dash">dash</option>
           </select>
           <input
-            id="drinkname"
-            name="ing1.name"
-            placeholder="White Rum"
-            value=""
+            id="ing1Name"
+            name="ing1Name"
+            placeholder={state.ing1Name}
+            value={state.ing1Name}
             onChange={change}
           />
         </div>
@@ -211,29 +214,31 @@ class Form extends Component {
         ******************/}
         <div className="form flex-between">
           <input
+            id="ing2Oz"
+            className="num"
             type="number"
             min="0"
-            id="drinkCount"
-            placeholder="36"
-            name="ing1.count"
-            value=""
+            name="ing2Oz"
+            step="0.5"
+            placeholder={state.ing2Oz}
+            value={state.ing2Oz}
             onChange={change}
           />
           <select
-            id="select"
-            name="ing1.select"
+            id="ing2Inc"
             className="select"
-            value={this.state.ing1.select}
+            name="ing2Inc"
+            value={state.ing2Inc}
             onChange={change}
           >
             <option value="oz">oz</option>
             <option value="dash">dash</option>
           </select>
           <input
-            id="drinkname"
-            name="ing1.name"
-            placeholder="Lime"
-            value=""
+            id="ing2Name"
+            name="ing2Name"
+            placeholder={state.ing2Name}
+            value={state.ing2Name}
             onChange={change}
           />
         </div>
@@ -243,29 +248,31 @@ class Form extends Component {
         ******************/}
         <div className="form flex-between">
           <input
+            id="ing3Oz"
+            className="num"
             type="number"
             min="0"
-            id="drinkCount"
-            placeholder="18"
-            name="ing1.count"
-            value=""
+            name="ing3Oz"
+            step="0.5"
+            placeholder={state.ing3Oz}
+            value={state.ing3Oz}
             onChange={change}
           />
           <select
-            id="select"
-            name="ing1.select"
+            id="ing3Inc"
             className="select"
-            value={this.state.ing1.select}
+            name="ing3Inc"
+            value={state.ing3Inc}
             onChange={change}
           >
             <option value="oz">oz</option>
             <option value="dash">dash</option>
           </select>
           <input
-            id="drinkname"
-            name="ing1.name"
-            placeholder="Simple"
-            value=""
+            id="ing3Name"
+            name="ing3Name"
+            placeholder={state.ing3Name}
+            value={state.ing3Name}
             onChange={change}
           />
         </div>
@@ -281,7 +288,6 @@ class Form extends Component {
         {/****************
         *** ING SIX ***
         ******************/}
-
 
 
         {/****************
@@ -303,17 +309,23 @@ class Form extends Component {
             <div className="name">{this.newDrink()}
               <center><div className="small">wow cool</div></center>
             </div>
+
             <div style={{textAlign : 'left'}}>
               <div>
-                {newCount * this.state.ing1.oz} fl oz {this.state.ing1.name}
-                <div className="small">{((newCount*this.state.ing1.oz)/25.5).toFixed(1)} bottles</div>
               </div>
+
               <div>
-                {newCount * this.state.ing2.oz} {this.state.ing2.select} {this.state.ing2.name}
+                {this.state.drinkIncrement === "Eaches" ? (this.state.ing1Oz * this.state.drinkCount) : (128 * state.ing1Ratio)} {state.ing1Inc} {state.ing1Name}
               </div>
+
               <div>
-                {newCount * this.state.ing3.oz} {this.state.ing3.select} {this.state.ing3.name}
+                {this.state.drinkIncrement === "Eaches" ? (this.state.ing2Oz * this.state.drinkCount) : (128 * state.ing2Ratio)} {state.ing2Inc} {state.ing2Name}
               </div>
+
+              <div>
+                {this.state.drinkIncrement === "Eaches" ? (this.state.ing3Oz * this.state.drinkCount) : (128 * state.ing3Ratio)} {state.ing3Inc} {state.ing3Name}
+              </div>
+
             </div>
           </div>
         </div>

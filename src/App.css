@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background: #6F84FF;
+  background: url("../public/texture.png");
   color: white;
   font-family: "Gotham Rounded";
   overflow-y: hidden;
@@ -24,6 +24,9 @@ button {
 
 .hidden {
   display: none !important; }
+
+.select {
+  width: 7.2rem; }
 
 .flex-shrink {
   flex-shrink: 2; }
@@ -62,18 +65,21 @@ button {
   flex-direction: row;
   align-items: center; }
 
+.num {
+  width: auto; }
+
 .form * {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   color: white;
   border-radius: 0.3rem;
   padding: 0.3rem;
   border: none;
   font-size: 1.2rem;
   text-align: center;
-  margin: 0.2rem 1rem; }
+  margin: 0.2rem 0.3rem; }
 
 .plus {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   color: white;
   border-radius: 0.3rem;
   height: 40px;
@@ -108,7 +114,7 @@ button {
   text-align: center; }
 
 .footer {
-  background: linear-gradient(252.99deg, #ffb8a6 0%, #ff6da6 100%);
+  background: linear-gradient(135deg, #ffb8a6 0%, #ff6da6 100%);
   width: 120vw;
   height: 50vh;
   transform: rotate(5deg);
@@ -117,3 +123,7 @@ button {
   z-index: -1;
   position: fixed;
   bottom: -5rem; }
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 2rem; }

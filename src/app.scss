@@ -2,9 +2,12 @@
   font-family: "Gotham Rounded";
   src:url("../public/Gotham Rounded Medium.otf");
 }
+
+$gradient: linear-gradient(135deg, rgba(255, 184, 166, 1) 0%, rgba(255, 109, 166, 1) 100%);
+
 body{
   margin: 0;
-  background:#6F84FF;
+  background:url("../public/texture.png");
   color:white;
   font-family: "Gotham Rounded";
   overflow-y: hidden;
@@ -25,8 +28,13 @@ button{
   color: white;
   cursor: pointer;
 }
+
 .hidden{
   display: none !important;
+}
+
+.select {
+  width: 7.2rem;
 }
 
 .flex-shrink {
@@ -71,20 +79,23 @@ button{
   flex-direction: row;
   align-items: center;
 }
+.num{
+  width: auto;
+}
 
 .form *{
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   color:white;
   border-radius: 0.3rem;
   padding: 0.3rem;
   border:none;
   font-size: 1.2rem;
   text-align: center;
-  margin:0.2rem 1rem;
+  margin: 0.2rem 0.3rem;
 }
 
 .plus{
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   color:white;
   border-radius: 0.3rem;
   height: 40px;
@@ -122,7 +133,7 @@ button{
 }
 
 .footer{
-  background: linear-gradient(252.99deg, #ffb8a6 0%, #ff6da6 100%);
+  background: $gradient;
   width: 120vw;
   height: 50vh;
   transform: rotate(5deg);
@@ -131,4 +142,8 @@ button{
   z-index: -1;
   position: fixed;
   bottom: -5rem;
+}
+.title{
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
