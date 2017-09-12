@@ -126,7 +126,7 @@ class Form extends Component {
     let newDrink = "";
 
     this.state.isPlural ? plural = "'s" : plural = "";
-    newDrink = totalDrinks + " " + this.state.drinkName + plural;
+    newDrink = totalDrinks + " " + this.state.drinkName + "'s";
 
     return newDrink;
   };

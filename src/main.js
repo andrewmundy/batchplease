@@ -11,7 +11,7 @@ class Main extends Component {
   render() {
     return (
       <div className="app">
-        <div className="header">
+        <div className="header"> 
           <img id="logo" src={logo}/>
         </div>
 
