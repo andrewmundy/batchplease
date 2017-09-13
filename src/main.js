@@ -10,17 +10,18 @@ import Form from './form.js';
 class Main extends Component {
   render() {
     return (
-      <div className="app">
-        <div className="header"> 
+      <div className="app container">
+        <div className="header">
           <img id="logo" src={logo}/>
         </div>
-
+        <div className="side1"></div>
         <div className="content">
           <Form/>
         </div>
+        <div className="side2"></div>
 
         <div>
-          <Result/>
+          <Result/> 
         </div>
 
         <div className="footer"/>
