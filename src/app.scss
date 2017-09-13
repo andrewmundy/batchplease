@@ -149,7 +149,7 @@ input[type='checkbox']:checked {
 }
 .result{
   font-size: 2rem;
-  margin:2rem;
+  margin:2rem 0rem;
 }
 .addplus{
   text-align: center;
@@ -181,7 +181,11 @@ input[type='checkbox']:checked {
     width: 5rem;
   }
   .container{
+    grid-template-columns: 10px auto 10px;
     grid-template-rows: 120px auto 100px;
+  }
+  .result-container{
+    grid-template-columns: 10% 20% 15% 55%;
   }
 }
 @media (min-device-width: 1000px) and (min-device-height: 1000px) and (orientation: portrait){
