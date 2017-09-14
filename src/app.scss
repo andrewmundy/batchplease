@@ -35,6 +35,19 @@ button{
   cursor: pointer;
 }
 
+.filled{
+  background-color: white;
+}
+
+.heart{
+  width:2.5rem;
+  cursor: pointer;
+  transition:width 0.2s;
+}
+.heart:active, .heart:focus{
+  width:2.4rem;
+}
+
 .hidden{
   display: none !important;
 }
@@ -112,6 +125,10 @@ input[type='checkbox']:checked {
 .header{
   grid-area: header;
   justify-items:center;
+}
+
+.bottom{
+  padding-top: 2rem;
 }
 
 .form *{

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
+import heart from '../public/heart.svg';
+import heartfl from '../public/heartfl.svg';
+import response from '../response.json';
 
 class Form extends Component {
   constructor(props) {
@@ -9,6 +12,7 @@ class Form extends Component {
       drinkIncrement: "Eaches", // Eaches =1, Gal=128, Punch=384
       drinkName: "Daiquiri", //daiquiri
       inputs:3,
+      fav:1,
 
       totalDrinks:1, // Eaches? "drinkCount" : drinkIncrement(gal) / totalOz
       totalOz: 448, //drinkOz(3.5) * drinkIncrement(gal=128) * drinkCount(2) = 896
@@ -64,11 +68,23 @@ class Form extends Component {
         });
       }
     }
+
+    if(name === "heart"){
+      if(this.state.fav){
+        return this.setState({
+          fav:0
+        });
+      }else{
+        return this.setState({
+          fav:1
+        });
+      }
+    };
+
     this.setState({
       [name]: value
     });
   };
-
 
   newDrink() {
     let totalDrinks = 0;
@@ -112,12 +128,15 @@ class Form extends Component {
     }else if(this.state.drinkIncrement === "Gallon"){
       totalDrinks = Math.floor((this.state.drinkCount * 128)/drinkOz)
     }else if(this.state.drinkIncrement === "Punch Bowl"){
-      totalDrinks = (this.state.drinkCount * 320)/drinkOz
+      totalDrinks =  Math.floor((this.state.drinkCount * 320)/drinkOz)
     }
 
     ing1 = ing1 * totalDrinks;
     ing2 = ing2 * totalDrinks;
     ing3 = ing3 * totalDrinks;
+    ing4 = ing4 * totalDrinks;
+    ing5 = ing5 * totalDrinks;
+    ing6 = ing6 * totalDrinks;
 
     if(this.state.ing1Inc === "dash"){
       ing1 = parseFloat((ing1 * dashOz).toFixed(1))
@@ -138,11 +157,19 @@ class Form extends Component {
 
     newDrink = totalDrinks + " " + this.state.drinkName + plural;
 
-    console.log(ing1ratio, ing2ratio, ing1,drinkOz,totalDrinks)
+    console.log(this.state.fav)
+
+    let heartQuest = heart
+
+    if(this.state.fav){
+      heartQuest = heartfl
+    }else{
+      heartQuest = heart
+    }
 
     return (
       <div>
-        <div className="name">{newDrink}</div>
+        <div className="name">{newDrink} <img className="heart" src={heartQuest} name="heart" onClick={this.handleChange}/> </div>
         {this.results(ing1,ing2,ing3,ing4,ing5,ing6)}
       </div>
     )
@@ -413,7 +440,6 @@ class Form extends Component {
     for(var i=0;i<x;i++){
       outputs.push(arr[i])
     }
-
     return outputs
   }
 
@@ -421,13 +447,13 @@ class Form extends Component {
     let state = this.state;
     let change = this.handleChange;
 
+    console.log(this.state)
 
     return (
       <div className="">
         <div className="result">
           <div className="">
             {this.newDrink()}
-            <div className="small">wow cool</div>
           </div>
         </div>
         <div className="inputs">
@@ -470,6 +496,11 @@ class Form extends Component {
               -
             </button>
           </div>
+        </div>
+        <p/>
+        <div className="small">{{response}.response.response[Math.ceil(Math.random()*5)]}</div>
+        <div className="small bottom">
+         * bowl = standard 10qt punch bowl
         </div>
       </div>
     )

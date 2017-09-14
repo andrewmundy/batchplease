@@ -1,35 +1,10 @@
 {
-  "eaches": {
-    "1": "Aw, just a lonely little cocktail.",
-    "2": "Great! Now set out and create your friend. Then drink them. They'd want it this way.",
-    "3": "Single bev to rule them all!",
-    "4": "^4.1.1",
-    "5": "^15.5.4",
-    "6": "^15.5.4",
-    "7": "^4.1.1",
-    "8": "^4.1.1",
-    "9": "^0.9.5"
-  },
-  "medium": {
-    "1": "^4.7.0",
-    "2": "^4.5.3",
-    "3": "^4.5.0",
-    "4": "^4.1.1",
-    "5": "^15.5.4",
-    "6": "^15.5.4",
-    "7": "^4.1.1",
-    "8": "^4.1.1",
-    "9": "^0.9.5"
-  },
-  "bunch": {
-    "1": "^4.7.0",
-    "2": "^4.5.3",
-    "3": "^4.5.0",
-    "4": "^4.1.1",
-    "5": "^15.5.4",
-    "6": "^15.5.4",
-    "7": "^4.1.1",
-    "8": "^4.1.1",
-    "9": "^0.9.5"
+  "response":{
+    "1":"Actually, pretty darn proud of you.",
+    "2":"Look at that, you're doing it!",
+    "3":"Whoa, is that a new haircut?.",
+    "4":"Finally, someone who get it.",
+    "5":"There's spirit fingers and then there's spirit torso.",
+    "6":"If someone is smelling their fingers- its not good."
   }
 }
