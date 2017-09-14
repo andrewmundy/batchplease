@@ -1,7 +1,13 @@
 @font-face {
-  font-family: "Gotham Rounded";
-  src:url("../public/Gotham Rounded Medium.otf");
+	font-family: 'Gotham Rounded';
+	src: url('../public/GothamRounded-Medium.eot');
+	src: url('../public/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../public/GothamRounded-Medium.woff') format('woff'),
+		url('../public/GothamRounded-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
 }
+
 
 $gradient: linear-gradient(135deg, rgba(255, 184, 166, 1) 0%, rgba(255, 109, 166, 1) 100%);
 
@@ -60,7 +66,7 @@ input[type='checkbox']:checked {
 
 .result-container{
   display:grid;
-  grid-template-columns: 30% 10% 20% 40%;
+  grid-template-columns: 25% 15% 20% 40%;
   grid-template-rows: auto auto auto;
   grid-template-areas:
     "button oz inc name"
