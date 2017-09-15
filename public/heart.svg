@@ -2,10 +2,10 @@
     <defs>
         <style>
             .cls-1 {
-                fill: none;
+                fill: white;
                 opacity: 0.2;
                 stroke-linejoin: round;
-                stroke-width: 50px;
+                stroke-width: 10px;
             }
 
             .cls-2 {
