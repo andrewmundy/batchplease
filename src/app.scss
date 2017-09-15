@@ -13,7 +13,7 @@ $gradient: linear-gradient(135deg, rgba(255, 184, 166, 1) 0%, rgba(255, 109, 166
 
 body{
   margin: 0;
-  background:url("../public/texture.png");
+  background:url("../public/pattern.svg") , url("../public/texture.png");
   color:white;
   font-family: "Gotham Rounded";
   min-height: 100vh;
@@ -55,22 +55,33 @@ button{
 .select {
   width: 7.2rem;
 }
+
 .name{
   font-size: 3rem;
+	margin-bottom:2rem;
+}
+
+.grey{
+	color:rgba(255,255,255,0.3)
 }
 
 input[type='checkbox'] {
   -webkit-appearance: none;
+	appearance:none;
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255,255,255,0.8);
   background: rgba(255,255,255,0.2);
+	border: 0px solid rgba(255, 255, 255, 0);
   border-radius: 0.4rem;
   cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 input[type='checkbox']:checked {
-  background: rgba(255,255,255,1);
+	background: rgba(255, 255, 255, 0.2);
+  border: 0px solid rgba(255, 255, 255, 0);
+  transform: rotate(150deg);
+	transition: transform 0.2s ease-in-out;
 }
 
 #hidden{
@@ -79,6 +90,7 @@ input[type='checkbox']:checked {
 
 .result-container{
   display:grid;
+	width: 100%;
   grid-template-columns: 25% 15% 20% 40%;
   grid-template-rows: auto auto auto;
   grid-template-areas:
@@ -104,6 +116,7 @@ input[type='checkbox']:checked {
 
 .container{
   display: grid;
+	width: 100vw;
   grid-template-columns: auto auto auto;
   grid-template-rows: 200px auto 100px;
   grid-template-areas:
@@ -161,7 +174,16 @@ input[type='checkbox']:checked {
 .logo{
   width: 10rem;
 }
-
+.drinks{
+	padding: 0 3rem;
+  width: 150px;
+  z-index: 0;
+  position: static;
+  -webkit-transform: rotate()-5deg;
+  -ms-transform: rotate()-5deg;
+  transform: rotate(-5deg);
+  margin-top: -10rem;
+}
 .content{
   grid-area: content;
 }
@@ -169,6 +191,8 @@ input[type='checkbox']:checked {
 .small{
   font-size: 1rem;
   color:rgba(255,255,255,0.5);
+	max-width: 300px;
+	margin: auto;
 }
 .result{
   font-size: 2rem;
@@ -179,6 +203,9 @@ input[type='checkbox']:checked {
 }
 
 .footer{
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
   background: $gradient;
   height: 50vh;
   width: 120vw;
@@ -194,7 +221,7 @@ input[type='checkbox']:checked {
     font-size: 1.5rem;
   }
   .form *{
-    font-size: 1rem;
+    font-size: 1.2rem;
     width: 6rem;
   }
   .select{
@@ -210,6 +237,17 @@ input[type='checkbox']:checked {
   .result-container{
     grid-template-columns: 10% 20% 15% 55%;
   }
+	.name{
+		font-size: 2rem;
+		margin-bottom:1rem;
+	}
+	.heart{
+		width: 1.5rem;
+	}
+	.small{
+		width: 300px;
+		margin: auto;
+	}
 }
 @media (min-device-width: 1000px) and (min-device-height: 1000px) and (orientation: portrait){
   .result{

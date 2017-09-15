@@ -2,46 +2,51 @@ import React, {Component} from 'react';
 import './App.css';
 import heart from '../public/heart.svg';
 import heartfl from '../public/heartfl.svg';
-import response from '../response.json';
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drinkCount: 1, // 1
+      drinkCount: 4, // 1
       drinkIncrement: "Eaches", // Eaches =1, Gal=128, Punch=384
-      drinkName: "Daiquiri", //daiquiri
-      inputs:3,
+      drinkName: "Piña Colada", //daiquiri
+      inputs:6,
       fav:1,
 
-      totalDrinks:1, // Eaches? "drinkCount" : drinkIncrement(gal) / totalOz
+      totalDrinks:4, // Eaches? "drinkCount" : drinkIncrement(gal) / totalOz
       totalOz: 448, //drinkOz(3.5) * drinkIncrement(gal=128) * drinkCount(2) = 896
       drinkOz: 3.5, // ing1 + ing2 + ing3 + ing4 + ing5 +ing6
       isPlural: false, // totalDrink > 1 ?
 
+      "ing1grey":1,
       "ing1Oz": 2,
       "ing1Inc": "oz",
       "ing1Name":"White Rum",
 
+      "ing2grey":1,
       "ing2Oz": 1,
       "ing2Inc": "oz",
-      "ing2Name":"Lime",
+      "ing2Name":"Dark Rum",
 
-      "ing3Oz": 0.5,
+      "ing3grey":1,
+      "ing3Oz": 1,
       "ing3Inc": "oz",
-      "ing3Name":"Simple",
+      "ing3Name":"Lime",
 
-      "ing4Oz": 0,
+      "ing4grey":1,
+      "ing4Oz": 1,
       "ing4Inc": "oz",
-      "ing4Name":"ingredient",
+      "ing4Name":"Pineapple",
 
-      "ing5Oz": 0,
+      "ing5grey":1,
+      "ing5Oz": 1,
       "ing5Inc": "oz",
-      "ing5Name": "ingredient",
+      "ing5Name": "Coco Lopez",
 
-      "ing6Oz": 0,
-      "ing6Inc": "oz",
-      "ing6Name":"ingredient",
+      "ing6grey":1,
+      "ing6Oz": 4,
+      "ing6Inc": "dash",
+      "ing6Name":"Angostura Bitters",
     }
     this.handleChange = this.handleChange.bind(this);
   };
@@ -81,6 +86,19 @@ class Form extends Component {
       }
     };
 
+    if(name === "checkbox"){
+      let grey = `ing${value}grey`;
+      if(this.state[grey]){
+        return this.setState({
+          [grey]:0
+        });
+      }else{
+        return this.setState({
+          [grey]:1
+        });
+      }
+    };
+
     this.setState({
       [name]: value
     });
@@ -100,6 +118,19 @@ class Form extends Component {
     let ing5 = this.state.ing5Oz;
     let ing6 = this.state.ing6Oz;
 
+    if(this.state.ing1Inc === "dash"){
+      ing1 = parseFloat((ing1 * dashOz).toFixed(1))
+    }else if (this.state.ing2Inc === "dash") {
+      ing2 = parseFloat((ing2 * dashOz).toFixed(1))
+    }else if (this.state.ing3Inc === "dash") {
+      ing3 = parseFloat((ing3 * dashOz).toFixed(1))
+    }else if (this.state.ing4Inc === "dash") {
+      ing4 = parseFloat((ing4 * dashOz).toFixed(1))
+    }else if (this.state.ing5Inc === "dash") {
+      ing5 = parseFloat((ing5 * dashOz).toFixed(1))
+    }else if (this.state.ing6Inc === "dash") {
+      ing6 = parseFloat((ing6 * dashOz).toFixed(1))
+    }
     //DRINKOZ//
     let drinkOz =
         Number(ing1)
@@ -123,6 +154,7 @@ class Form extends Component {
     // eslint-disable-next-line
     let ing6ratio = (ing6/drinkOz).toFixed(2);
 
+
     if (this.state.drinkIncrement === "Eaches"){
       totalDrinks = this.state.drinkCount
     }else if(this.state.drinkIncrement === "Gallon"){
@@ -131,55 +163,55 @@ class Form extends Component {
       totalDrinks =  Math.floor((this.state.drinkCount * 320)/drinkOz)
     }
 
-    ing1 = ing1 * totalDrinks;
-    ing2 = ing2 * totalDrinks;
-    ing3 = ing3 * totalDrinks;
-    ing4 = ing4 * totalDrinks;
-    ing5 = ing5 * totalDrinks;
-    ing6 = ing6 * totalDrinks;
+    ing1 *= totalDrinks;
+    ing2 *= totalDrinks;
+    ing3 *= totalDrinks;
+    ing4 *= totalDrinks;
+    ing5 *= totalDrinks;
+    ing6 *= totalDrinks;
 
-    if(this.state.ing1Inc === "dash"){
-      ing1 = parseFloat((ing1 * dashOz).toFixed(1))
-    }else if (this.state.ing2Inc === "dash") {
-      ing2 = parseFloat((ing2 * dashOz).toFixed(1))
-    }else if (this.state.ing3Inc === "dash") {
-      ing3 = parseFloat((ing3 * dashOz).toFixed(1))
-    }else if (this.state.ing4Inc === "dash") {
-      ing4 = parseFloat((ing4 * dashOz).toFixed(1))
-    }else if (this.state.ing5Inc === "dash") {
-      ing5 = parseFloat((ing5 * dashOz).toFixed(1))
-    }else if (this.state.ing6Inc === "dash") {
-      ing6 = parseFloat((ing6 * dashOz).toFixed(1))
-    }
 
     //PLURAL
     totalDrinks > 1 ? plural = "s" : plural = "";
 
     newDrink = totalDrinks + " " + this.state.drinkName + plural;
 
-    console.log(this.state.fav)
-
-    let heartQuest = heart
+    let heartQuest = heart;
 
     if(this.state.fav){
-      heartQuest = heartfl
+      heartQuest = heartfl;
     }else{
-      heartQuest = heart
+      heartQuest = heart;
     }
 
     return (
       <div>
-        <div className="name">{newDrink} <img className="heart" src={heartQuest} name="heart" onClick={this.handleChange}/> </div>
+        <div className="name">{newDrink} <img className="heart" alt="favorite 💕" src={heartQuest} name="heart" onClick={this.handleChange}/> </div>
         {this.results(ing1,ing2,ing3,ing4,ing5,ing6)}
       </div>
     )
   };
+
+  isMobile(){
+    if(window.innerWidth < 500){
+      return "tel"
+    }else{
+      return "number"
+    }
+  }
 
   isHidden(x){
     let theState = this.state[`ing${x}Oz`]
     return theState ? "show" : "hidden";
   }
 
+  isGrey(x){
+    if(this.state[`ing${x}grey`]){
+      return ""
+    }else{
+      return "grey"
+    }
+  }
   inputs(){
     let state = this.state;
     let change = this.handleChange;
@@ -191,12 +223,14 @@ class Form extends Component {
       <input
       id="ing1Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing1Oz"
       placeholder={state.ing1Oz}
       value={state.ing1Oz}
       onChange={change}
+      tabIndex="3"
+
       />
       <select
       id="ing1Inc"
@@ -214,6 +248,7 @@ class Form extends Component {
       placeholder={state.ing1Name}
       value={state.ing1Name}
       onChange={change}
+      tabIndex="4"
       />
       </div>
     );
@@ -222,12 +257,14 @@ class Form extends Component {
       <input
       id="ing2Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing2Oz"
       placeholder={state.ing2Oz}
       value={state.ing2Oz}
       onChange={change}
+      tabIndex="5"
+
       />
       <select
       id="ing2Inc"
@@ -245,6 +282,7 @@ class Form extends Component {
       placeholder={state.ing2Name}
       value={state.ing2Name}
       onChange={change}
+      tabIndex="6"
       />
       </div>
     );
@@ -253,12 +291,14 @@ class Form extends Component {
       <input
       id="ing3Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing3Oz"
       placeholder={state.ing3Oz}
       value={state.ing3Oz}
       onChange={change}
+      tabIndex="7"
+
       />
       <select
       id="ing3Inc"
@@ -276,6 +316,7 @@ class Form extends Component {
       placeholder={state.ing3Name}
       value={state.ing3Name}
       onChange={change}
+      tabIndex="8"
       />
       </div>
     );
@@ -284,12 +325,14 @@ class Form extends Component {
       <input
       id="ing4Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing4Oz"
       placeholder={state.ing4Oz}
       value={state.ing4Oz}
       onChange={change}
+      tabIndex="9"
+
       />
       <select
       id="ing4Inc"
@@ -307,6 +350,8 @@ class Form extends Component {
       placeholder={state.ing4Name}
       value={state.ing4Name}
       onChange={change}
+      tabIndex="10"
+
       />
       </div>
     );
@@ -315,12 +360,14 @@ class Form extends Component {
       <input
       id="ing5Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing5Oz"
       placeholder={state.ing5Oz}
       value={state.ing5Oz}
       onChange={change}
+      tabIndex="11"
+
       />
       <select
       id="ing5Inc"
@@ -338,6 +385,7 @@ class Form extends Component {
       placeholder={state.ing5Name}
       value={state.ing5Name}
       onChange={change}
+      tabIndex="12"
       />
       </div>
     );
@@ -346,12 +394,14 @@ class Form extends Component {
       <input
       id="ing6Oz"
       className="num"
-      type="number"
+      type={this.isMobile()}
       min="0"
       name="ing6Oz"
       placeholder={state.ing6Oz}
       value={state.ing6Oz}
       onChange={change}
+      tabIndex="13"
+
       />
       <select
       id="ing6Inc"
@@ -369,6 +419,7 @@ class Form extends Component {
       placeholder={state.ing6Name}
       value={state.ing6Name}
       onChange={change}
+      tabIndex="14"
       />
       </div>
     );
@@ -387,48 +438,48 @@ class Form extends Component {
     let outputs = [];
 
     let one = (
-      <div id={this.isHidden(1)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(1)} ${this.isHidden(1)}`}>
+        <div><input id="checkbox1" type="checkbox" name="checkbox" value="1" onClick={this.handleChange}/></div>
         <div className="oz">{ing1}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing1Name}</div>
       </div>
     );
     let two = (
-      <div id={this.isHidden(2)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(2)} ${this.isHidden(2)}`}>
+        <div><input id="checkbox2" name="checkbox" value="2" type="checkbox" onClick={this.handleChange}/></div>
         <div className="oz">{ing2}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing2Name}</div>
       </div>
     );
     let three = (
-      <div id={this.isHidden(3)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(3)} ${this.isHidden(3)}`}>
+        <div><input id="checkbox3" name="checkbox" value="3" type="checkbox" onClick={this.handleChange}/></div>
         <div className="oz">{ing3}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing3Name}</div>
       </div>
     );
     let four = (
-      <div id={this.isHidden(4)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(4)} ${this.isHidden(4)}`}>
+        <div><input id="checkbox4" name="checkbox" value="4" type="checkbox" onClick={this.handleChange}/></div>
         <div className="oz">{ing4}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing4Name}</div>
       </div>
     );
     let five = (
-      <div id={this.isHidden(5)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(5)} ${this.isHidden(5)}`}>
+        <div><input id="checkbox5" name="checkbox" value="5" type="checkbox" onClick={this.handleChange}/></div>
         <div className="oz">{ing5}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing5Name}</div>
       </div>
     );
     let six = (
-      <div id={this.isHidden(6)} className="result-container">
-        <div><input id="checkbox" type="checkbox"/></div>
+      <div className={`result-container ${this.isGrey(6)} ${this.isHidden(6)}`}>
+        <div><input id="checkbox6" name="checkbox" value="6" type="checkbox" onClick={this.handleChange}/></div>
         <div className="oz">{ing6}</div>
         <div className="inc">oz</div>
         <div className="ing-name">{state.ing6Name}</div>
@@ -461,12 +512,14 @@ class Form extends Component {
             <input
               id="drinkCount"
               className="num"
-              type="number"
+              type={this.isMobile()}
               min="1"
               placeholder={state.drinkCount}
               name="drinkCount"
               value={state.drinkCount}
               onChange={change}
+              tabIndex="1"
+
             />
             <select
               id="select"
@@ -485,6 +538,7 @@ class Form extends Component {
               placeholder={state.drinkName}
               value={state.drinkName}
               onChange={change}
+              tabIndex="2"
             />
           </div>
           {this.inputs()}
@@ -498,10 +552,10 @@ class Form extends Component {
           </div>
         </div>
         <p/>
-        <div className="small">{{response}.response.response[Math.ceil(Math.random()*5)]}</div>
         <div className="small bottom">
          * bowl = standard 10qt punch bowl
         </div>
+        <p/>
       </div>
     )
   }

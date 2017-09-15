@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import logo from "../public/logo.svg";
 import Form from './form.js';
+import response from '../response.json';
+
+import cocktail from '../public/cocktail.svg';
 
 class Main extends Component {
   render() {
@@ -12,11 +15,16 @@ class Main extends Component {
         </div>
         <div className="side1"></div>
         <div className="content">
-          <Form/>
+          <Form />
+          <div>
+          </div>
+          <div className="small">{{response}.response.response[Math.ceil(Math.random()*11)]}</div>
         </div>
-        <div className="side2"></div>
+        <div className="side2"></div>{console.log(this.state)}
 
-        <div className="footer"/>
+        <div className="footer">
+          {/*<img className="drinks" src={cocktail}/>*/}
+        </div>
       </div>
     );
   }
