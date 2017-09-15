@@ -18,17 +18,17 @@ body {
 }
 
 input::-webkit-input-placeholder {
-	font-family: "Gotham Rounded";
+	font-family: "Gotham Rounded", "system-ui", "helvetica";
 	color: rgba(255, 255, 255, 0.5);
 }
 
 input:-ms-input-placeholder {
-	font-family: "Gotham Rounded";
+	font-family: "Gotham Rounded", "system-ui", "helvetica";
 	color: rgba(255, 255, 255, 0.5);
 }
 
 input::placeholder {
-	font-family: "Gotham Rounded";
+	font-family: "Gotham Rounded", "system-ui", "helvetica";
 	color: rgba(255, 255, 255, 0.5);
 }
 
@@ -223,7 +223,7 @@ input[type='checkbox']:checked {
 }
 .result * * *{
 	font-size: 2rem;
-	font-family: "Gotham Rounded";
+	font-family: "Gotham Rounded", "system-ui", "helvetica";
 }
 
 .addplus {
