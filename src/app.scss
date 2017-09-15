@@ -34,6 +34,7 @@ input::placeholder{
 }
 
 select{
+	font-family: "Gotham Rounded";
   appearance: none;
   cursor: pointer;
 }
@@ -42,6 +43,7 @@ button{
   background: rgba(255,255,255,0.5);
   color: white;
   cursor: pointer;
+	font-family: "Gotham Rounded";
 }
 
 .filled{
@@ -163,8 +165,9 @@ input[type='checkbox']:checked {
   border:none;
   text-align: center;
 }
+
 .selected{
-	background: none;
+	background: rgba(0,0,0,0.05);
 }
 
 .plus{
