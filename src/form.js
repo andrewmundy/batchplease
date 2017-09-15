@@ -589,9 +589,9 @@ class Form extends Component {
               value={state.drinkIncrement}
               onChange={change}
             >
-              <option value="Eaches">Eaches</option>
-              <option value="Litre">Litre</option>
-              <option value="Gallon">Gallon</option>
+              <option value="Eaches">Ea</option>
+              <option value="Litre">Lt</option>
+              <option value="Gallon">Gl</option>
               <option value="Punch Bowl">Bowl</option>
             </select>
             <input
