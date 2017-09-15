@@ -198,7 +198,9 @@ input[type='checkbox']:checked {
     width: 1.5rem; }
   .small {
     width: 300px;
-    margin: auto; } }
+    margin: auto; }
+  .ing-name {
+    text-align: center !important; } }
 
 @media (min-device-width: 1000px) and (min-device-height: 1000px) and (orientation: portrait) {
   .result {

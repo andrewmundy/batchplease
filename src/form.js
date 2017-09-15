@@ -230,11 +230,7 @@ class Form extends Component {
     if(this.state.measurement === "ml"){
       return "ml"
     }else if(this.state.measurement === "floz"){
-      return "fl oz"
-    }
-
-    if(this.state.drinkIncrement === "Weight"){
-      return "fl oz"
+      return "floz"
     }
     if(this.state[`ing${x}Inc`] === "dash"){
       return "oz"
