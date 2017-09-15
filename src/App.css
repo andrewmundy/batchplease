@@ -17,6 +17,9 @@ body {
   font-family: "Gotham Rounded", "ui-system", "helvetica";
   min-height: 100vh; }
 
+input {
+  font-family: "Gotham Rounded", "ui-system", "helvetica"; }
+
 input::placeholder {
   font-family: "Gotham Rounded";
   color: rgba(255, 255, 255, 0.5); }
@@ -123,6 +126,9 @@ input[type='checkbox']:checked {
   border: none;
   text-align: center; }
 
+.selected {
+  background: none; }
+
 .plus {
   background: rgba(255, 255, 255, 0.1);
   color: white;
@@ -136,6 +142,9 @@ input[type='checkbox']:checked {
 .select {
   padding: 0.3rem;
   color: white;
+  width: 4rem; }
+
+.number {
   width: 4rem; }
 
 .logo {

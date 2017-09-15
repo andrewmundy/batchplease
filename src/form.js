@@ -7,26 +7,27 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drinkCount: 4, // 1
-      drinkIncrement: "Eaches", // Eaches =1, Gal=128, Punch=384
-      drinkName: "Piña Colada", //daiquiri
-      inputs:6,
+      drinkCount: 1, // 1
+      drinkIncrement: "Litre", // Eaches =1, Gal=128, Punch=384
+      drinkName: "Margarita", //daiquiri
+      inputs:5,
       fav:0,
+      measurement:"oz",
 
       totalDrinks:4, // Eaches? "drinkCount" : drinkIncrement(gal) / totalOz
       totalOz: 448, //drinkOz(3.5) * drinkIncrement(gal=128) * drinkCount(2) = 896
       drinkOz: 3.5, // ing1 + ing2 + ing3 + ing4 + ing5 +ing6
       isPlural: false, // totalDrink > 1 ?
 
-      "ing1grey":1,
+      "ing1grey":1.5,
       "ing1Oz": 2,
       "ing1Inc": "oz",
-      "ing1Name":"White Rum",
+      "ing1Name":"Tequila",
 
       "ing2grey":1,
       "ing2Oz": 1,
       "ing2Inc": "oz",
-      "ing2Name":"Dark Rum",
+      "ing2Name":"Cointreau",
 
       "ing3grey":1,
       "ing3Oz": 1,
@@ -34,19 +35,19 @@ class Form extends Component {
       "ing3Name":"Lime",
 
       "ing4grey":1,
-      "ing4Oz": 1,
+      "ing4Oz": 0.5,
       "ing4Inc": "oz",
-      "ing4Name":"Pineapple",
+      "ing4Name":"Agave",
 
       "ing5grey":1,
       "ing5Oz": 1,
-      "ing5Inc": "oz",
-      "ing5Name": "Coco Lopez",
+      "ing5Inc": "dash",
+      "ing5Name": "Mezcal",
 
       "ing6grey":1,
-      "ing6Oz": 4,
-      "ing6Inc": "dash",
-      "ing6Name":"Angostura Bitters",
+      "ing6Oz": 0,
+      "ing6Inc": "",
+      "ing6Name":"",
     }
     this.handleChange = this.handleChange.bind(this);
   };
@@ -86,6 +87,20 @@ class Form extends Component {
       }
     };
 
+    if(name === "oz"){
+      this.setState({
+        measurement:"oz"
+      })
+    }else if(name === "ml"){
+      this.setState({
+        measurement:"ml"
+      })
+    }else if (name === "floz") {
+      this.setState({
+        measurement:"floz"
+      })
+    }
+
     if(name === "checkbox"){
       let grey = `ing${value}grey`;
       if(this.state[grey]){
@@ -106,10 +121,18 @@ class Form extends Component {
 
   newDrink() {
     let totalDrinks = 0;
-    // eslint-disable-next-line
     let dashOz = 0.21;
     let plural = "";
     let newDrink = "";
+    let multiplier = 0;
+
+    if(this.state.measurement === "oz"){
+      multiplier = 1;
+    }else if(this.state.measurement === "floz"){
+      multiplier = 1.04;
+    }else if(this.state.measurement === "ml"){
+      multiplier = 29.57;
+    }
 
     let ing1 = this.state.ing1Oz;
     let ing2 = this.state.ing2Oz;
@@ -117,8 +140,6 @@ class Form extends Component {
     let ing4 = this.state.ing4Oz;
     let ing5 = this.state.ing5Oz;
     let ing6 = this.state.ing6Oz;
-
-    console.log(ing6 + "state")
 
     if(this.state.ing1Inc === "dash"){
       ing1 = parseFloat((ing1 * dashOz).toFixed(1))
@@ -150,23 +171,14 @@ class Form extends Component {
       totalDrinks = Math.floor((this.state.drinkCount * 320)/drinkOz)
     }else if(this.state.drinkIncrement === "Litre"){
       totalDrinks = Math.floor((this.state.drinkCount * 33.81)/drinkOz)
-    }else if(this.state.drinkIncrement === "Weight"){
-      totalDrinks = this.state.drinkCount;
-
-      ing1 *= 1.04;
-      ing2 *= 1.04;
-      ing3 *= 1.04;
-      ing4 *= 1.04;
-      ing5 *= 1.04;
-      ing6 *= 1.04;
     }
 
-    ing1 *= totalDrinks;
-    ing2 *= totalDrinks;
-    ing3 *= totalDrinks;
-    ing4 *= totalDrinks;
-    ing5 *= totalDrinks;
-    ing6 *= totalDrinks;
+    ing1 *= totalDrinks * multiplier;
+    ing2 *= totalDrinks * multiplier;
+    ing3 *= totalDrinks * multiplier;
+    ing4 *= totalDrinks * multiplier;
+    ing5 *= totalDrinks * multiplier;
+    ing6 *= totalDrinks * multiplier;
 
     //PLURAL
     totalDrinks > 1 ? plural = "s" : plural = "";
@@ -215,7 +227,12 @@ class Form extends Component {
   };
 
   increment(x){
-    console.log(this.state.drinkIncrement)
+    if(this.state.measurement === "ml"){
+      return "ml"
+    }else if(this.state.measurement === "floz"){
+      return "fl oz"
+    }
+
     if(this.state.drinkIncrement === "Weight"){
       return "fl oz"
     }
@@ -226,6 +243,21 @@ class Form extends Component {
     }
   }
 
+  isMax(){
+    if(this.state.inputs === 6){
+      return "hidden"
+    }
+  };
+  isMin(){
+    if(this.state.inputs === 1){
+      return "hidden"
+    }
+  };
+  isSelected(x){
+    if(this.state.measurement === x){
+      return "selected"
+    }
+  }
   inputs(){
     let state = this.state;
     let change = this.handleChange;
@@ -517,11 +549,19 @@ class Form extends Component {
     return outputs
   }
 
+  measurement(){
+    return(
+      <div className="form">
+        <button className={this.isSelected("ml")} name="ml" value="0" onClick={this.handleChange}>ml</button>
+        <button className={this.isSelected("oz")} name="oz" value="1" onClick={this.handleChange}>oz</button>
+        <button className={this.isSelected("floz")} name="floz" value="0" onClick={this.handleChange}>fl oz</button>
+      </div>
+    )
+  }
+
   render() {
     let state = this.state;
     let change = this.handleChange;
-
-    console.log(this.state)
 
     return (
       <div className="">
@@ -530,6 +570,7 @@ class Form extends Component {
             {this.newDrink()}
           </div>
         </div>
+          {this.measurement()}
         <div className="inputs">
           <div className="form title">
             <input
@@ -556,7 +597,6 @@ class Form extends Component {
               <option value="Litre">Litre</option>
               <option value="Gallon">Gallon</option>
               <option value="Punch Bowl">Bowl</option>
-              <option value="Weight">Weight</option>
             </select>
             <input
               id="drinkname"
@@ -570,10 +610,11 @@ class Form extends Component {
           </div>
           {this.inputs()}
           <div className="addplus">
-            <button id="plus" name="inputs" value="plus" onClick={change} className="plus">
+            <button id="plus" name="inputs" value="plus" onClick={change} className={` plus ${this.isMax()}`}>
               +
             </button>
-            <button id="minus" name="inputs" value="minus" onClick={change} className="plus">
+
+            <button id="minus" name="inputs" value="minus" onClick={change} className={` plus ${this.isMin()}`}>
               -
             </button>
           </div>
