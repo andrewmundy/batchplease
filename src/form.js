@@ -125,13 +125,15 @@ class Form extends Component {
     let plural = "";
     let newDrink = "";
     let multiplier = 0;
+    let state = this.state;
+    let change = this.handleChange;
 
     if(this.state.measurement === "oz"){
       multiplier = 1;
     }else if(this.state.measurement === "floz"){
       multiplier = 1.04;
     }else if(this.state.measurement === "ml"){
-      multiplier = 29.57;
+      multiplier = 0.029;
     }
 
     let ing1 = this.state.ing1Oz;
@@ -228,7 +230,7 @@ class Form extends Component {
 
   increment(x){
     if(this.state.measurement === "ml"){
-      return "ml"
+      return "lt"
     }else if(this.state.measurement === "floz"){
       return "floz"
     }
@@ -240,15 +242,17 @@ class Form extends Component {
   }
 
   isMax(){
-    if(this.state.inputs === 6){
+    if(this.state.inputs === 7){
       return "hidden"
     }
   };
+
   isMin(){
     if(this.state.inputs === 1){
       return "hidden"
     }
   };
+
   isSelected(x){
     if(this.state.measurement === x){
       return "selected"
@@ -480,6 +484,7 @@ class Form extends Component {
     for(var i=0;i<x;i++){
       outputs.push(arr[i])
     }
+
     return outputs
   }
 
@@ -548,9 +553,9 @@ class Form extends Component {
   measurement(){
     return(
       <div className="form">
-        <button className={this.isSelected("ml")} name="ml" value="0" onClick={this.handleChange}>ml</button>
-        <button className={this.isSelected("oz")} name="oz" value="1" onClick={this.handleChange}>oz</button>
-        <button className={this.isSelected("floz")} name="floz" value="0" onClick={this.handleChange}>fl oz</button>
+        <button className={`select ${this.isSelected("ml")}`} name="ml" value="0" onClick={this.handleChange}>lt</button>
+        <button className={`select ${this.isSelected("oz")}`} name="oz" value="1" onClick={this.handleChange}>oz</button>
+        <button className={`select ${this.isSelected("floz")}`} name="floz" value="0" onClick={this.handleChange}>floz</button>
       </div>
     )
   }
@@ -568,43 +573,45 @@ class Form extends Component {
         </div>
           {this.measurement()}
         <div className="inputs">
-          <div className="form title">
-            <input
-              id="drinkCount"
-              className="num"
-              type={this.isMobile()}
-              min="1"
-              placeholder={state.drinkCount}
-              name="drinkCount"
-              value={state.drinkCount}
-              onChange={change}
-              tabIndex="1"
-              onFocus={this.handleFocus}
-
-            />
-            <select
-              id="select"
-              className="select"
-              name="drinkIncrement"
-              value={state.drinkIncrement}
-              onChange={change}
-            >
-              <option value="Eaches">Ea</option>
-              <option value="Litre">Lt</option>
-              <option value="Gallon">Gl</option>
-              <option value="Punch Bowl">Bowl</option>
-            </select>
-            <input
-              id="drinkname"
-              name="drinkName"
-              placeholder={state.drinkName}
-              value={state.drinkName}
-              onChange={change}
-              tabIndex="2"
-              onFocus={this.handleFocus}
-            />
-          </div>
+        <div className="form title">
+          <input
+            id="drinkCount"
+            className="num"
+            type={this.isMobile()}
+            min="1"
+            placeholder={state.drinkCount}
+            name="drinkCount"
+            value={state.drinkCount}
+            onChange={change}
+            tabIndex="1"
+            onFocus={this.handleFocus}
+          />
+          <select
+            id="select"
+            className="select"
+            name="drinkIncrement"
+            value={state.drinkIncrement}
+            onChange={change}
+          >
+            <option value="Eaches">Ea</option>
+            <option value="Litre">Lt</option>
+            <option value="Gallon">Gl</option>
+            <option value="Punch Bowl">Bowl</option>
+          </select>
+          <input
+            id="drinkname"
+            name="drinkName"
+            placeholder={state.drinkName}
+            value={state.drinkName}
+            onChange={change}
+            tabIndex="2"
+            onFocus={this.handleFocus}
+          />
+        </div>
+        
           {this.inputs()}
+
+
           <div className="addplus">
             <button id="plus" name="inputs" value="plus" onClick={change} className={` plus ${this.isMax()}`}>
               +
