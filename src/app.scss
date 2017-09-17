@@ -46,6 +46,11 @@ button{
 	font-family: "Gotham Rounded";
 }
 
+.responsive{
+	font-size: 1vw;
+	width: 200px;
+}
+
 .filled{
   background-color: white;
 }
@@ -102,7 +107,7 @@ input[type='checkbox']:checked {
 .result-container{
   display:grid;
 	width: 100%;
-  grid-template-columns: 25% 15% 20% 40%;
+  grid-template-columns: 25% 15% 20% 4fr;
   grid-template-rows: auto auto auto;
   grid-template-areas:
     "button oz inc name"
@@ -167,7 +172,10 @@ input[type='checkbox']:checked {
 }
 
 .selected{
-	background: rgba(0,0,0,0.05);
+	background: rgba(255,255,255,0.1);
+}
+.unselected{
+	background: none;
 }
 
 .plus{
@@ -221,6 +229,7 @@ input[type='checkbox']:checked {
   text-align: center;
   grid-area: footer;
   z-index: -1;
+	margin-bottom: -25rem;
 }
 
 /* ------ Mobile ------ */
@@ -258,6 +267,9 @@ input[type='checkbox']:checked {
 	}
 	.ing-name{
 		text-align: center !important;
+	}
+	.footer{
+		margin-bottom: -15rem;
 	}
 }
 @media (min-device-width: 1000px) and (min-device-height: 1000px) and (orientation: portrait){

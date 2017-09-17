@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import heart from '../public/heart.svg';
 import heartfl from '../public/heartfl.svg';
+import clear from '../public/clear.svg';
 
 class Form extends Component {
   constructor(props) {
@@ -74,6 +75,44 @@ class Form extends Component {
         });
       }
     }
+    if(value === "clear"){
+      return this.setState({
+        drinkName:"Drink Name",
+        drinkCount:0,
+        drinkIncrement:"Eaches",
+        inputs:1,
+        measurement:"oz",
+        totalDrinks:0,
+        totalOz: 0,
+        drinkOz: 0,
+        isPlural: false,
+        "ing1grey":1,
+        "ing1Oz": 0,
+        "ing1Inc": "oz",
+        "ing1Name":"Ingredient",
+        "ing2grey":1,
+        "ing2Oz": 0,
+        "ing2Inc": "oz",
+        "ing2Name":"",
+        "ing3grey":1,
+        "ing3Oz": 0,
+        "ing3Inc": "oz",
+        "ing3Name":"",
+        "ing4grey":1,
+        "ing4Oz": 0,
+        "ing4Inc": "oz",
+        "ing4Name":"",
+        "ing5grey":1,
+        "ing5Oz": 0,
+        "ing5Inc": "oz",
+        "ing5Name": "",
+        "ing6grey":1,
+        "ing6Oz": 0,
+        "ing6Inc": "oz",
+        "ing6Name":"",
+      })
+    }
+    console.log(this.state)
 
     if(name === "heart"){
       if(this.state.fav){
@@ -183,7 +222,7 @@ class Form extends Component {
     ing6 *= totalDrinks * multiplier;
 
     //PLURAL
-    totalDrinks > 1 ? plural = "s" : plural = "";
+    totalDrinks > 1 || 0 ? plural = "s" : plural = "";
 
     newDrink = totalDrinks + " " + this.state.drinkName + plural;
 
@@ -205,7 +244,7 @@ class Form extends Component {
 
   isMobile(){
     if(window.innerWidth < 500){
-      return "tel"
+      return "number"
     }else{
       return "number"
     }
@@ -256,6 +295,8 @@ class Form extends Component {
   isSelected(x){
     if(this.state.measurement === x){
       return "selected"
+    }else{
+      return "unselected"
     }
   }
   inputs(){
@@ -268,7 +309,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing1Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing1Oz"
@@ -303,7 +344,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing2Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing2Oz"
@@ -338,7 +379,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing3Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing3Oz"
@@ -373,7 +414,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing4Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing4Oz"
@@ -410,7 +451,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing5Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing5Oz"
@@ -446,7 +487,7 @@ class Form extends Component {
       <div className="form fields">
       <input
       id="ing6Oz"
-      className="num"
+      className="num select"
       type={this.isMobile()}
       min="0"
       name="ing6Oz"
@@ -498,7 +539,9 @@ class Form extends Component {
         <div><input id="checkbox1" type="checkbox" name="checkbox" value="1" onClick={this.handleChange}/></div>
         <div className="oz">{parseFloat((ing1).toFixed(1))}</div>
         <div className="inc">{this.increment(1)}</div>
-        <div className="ing-name">{state.ing1Name}</div>
+        <div
+          className="ing-name"
+        >{state.ing1Name}</div>
       </div>
     );
     let two = (
@@ -576,7 +619,7 @@ class Form extends Component {
         <div className="form title">
           <input
             id="drinkCount"
-            className="num"
+            className="num select"
             type={this.isMobile()}
             min="1"
             placeholder={state.drinkCount}
@@ -593,10 +636,10 @@ class Form extends Component {
             value={state.drinkIncrement}
             onChange={change}
           >
-            <option value="Eaches">Ea</option>
-            <option value="Litre">Lt</option>
-            <option value="Gallon">Gl</option>
-            <option value="Punch Bowl">Bowl</option>
+            <option value="Eaches">ea</option>
+            <option value="Litre">lt</option>
+            <option value="Gallon">gl</option>
+            <option value="Punch Bowl">bowl</option>
           </select>
           <input
             id="drinkname"
@@ -608,7 +651,7 @@ class Form extends Component {
             onFocus={this.handleFocus}
           />
         </div>
-        
+
           {this.inputs()}
 
 
@@ -619,6 +662,10 @@ class Form extends Component {
 
             <button id="minus" name="inputs" value="minus" onClick={change} className={` plus ${this.isMin()}`}>
               -
+            </button>
+
+            <button id="clear" name="inputs" value="clear" onClick={change} className={` plus `}>
+              x
             </button>
           </div>
         </div>
