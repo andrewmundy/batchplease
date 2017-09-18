@@ -11,5 +11,223 @@
     "9":"The luck is gone / the brain is shot / but the liquor we still got.",
     "10":"Couglin's diet: cocktails and dreams.",
     "11":"Days get shorter and shorter, nights longer and longer, before you know it, your life is just one long night with a few comatose daylight hours."
+  },
+  "cocktails":{
+    "1":{
+        "drinkName":"Martini",
+        "inputs":3,
+        "ing1oz":2.5,
+        "ing1inc":"oz",
+        "ing1name":"Dry Gin",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Dry Vermouth",
+
+        "ing3oz":3,
+        "ing3inc":"dash",
+        "ing3name":"Orange Bitters",
+
+        "ing4oz":"",
+        "ing4inc":"",
+        "ing4name":"",
+
+        "ing5oz":"",
+        "ing5inc":"",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "2":{
+        "drinkName":"French 75",
+        "inputs":4,
+        "ing1oz":2,
+        "ing1inc":"oz",
+        "ing1name":"Gin",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Lemon",
+
+        "ing3oz":0.25,
+        "ing3inc":"oz",
+        "ing3name":"Simple",
+
+        "ing4oz":2,
+        "ing4inc":"oz",
+        "ing4name":"Sparkling Wine",
+
+        "ing5oz":"",
+        "ing5inc":"",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "3":{
+        "drinkName":"Negroni",
+        "inputs":3,
+        "ing1oz":1,
+        "ing1inc":"oz",
+        "ing1name":"Gin",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Sweet Vermouth",
+
+        "ing3oz":1,
+        "ing3inc":"oz",
+        "ing3name":"Campari",
+
+        "ing4oz":"",
+        "ing4inc":"",
+        "ing4name":"",
+
+        "ing5oz":"",
+        "ing5inc":"",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "4":{
+        "drinkName":"Sazerac",
+        "inputs":5,
+        "ing1oz":2,
+        "ing1inc":"oz",
+        "ing1name":"Rye",
+
+        "ing2oz":0.25,
+        "ing2inc":"oz",
+        "ing2name":"Simple",
+
+        "ing3oz":2,
+        "ing3inc":"dash",
+        "ing3name":"Angostura",
+
+        "ing4oz":4,
+        "ing4inc":"dash",
+        "ing4name":"Peychauds",
+
+        "ing5oz":3,
+        "ing5inc":"dash",
+        "ing5name":"Absinthe",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "5":{
+        "drinkName":"Mai Tai",
+        "inputs":5,
+        "ing1oz":2,
+        "ing1inc":"oz",
+        "ing1name":"Aged Rum",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Lime",
+
+        "ing3oz":0.5,
+        "ing3inc":"oz",
+        "ing3name":"Cointreau",
+
+        "ing4oz":0.25,
+        "ing4inc":"oz",
+        "ing4name":"Orgeat",
+
+        "ing5oz":0.25,
+        "ing5inc":"oz",
+        "ing5name":"Mint Simple",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "6":{
+        "drinkName":"Last Word",
+        "inputs":4,
+        "ing1oz":0.75,
+        "ing1inc":"oz",
+        "ing1name":"Gin",
+
+        "ing2oz":0.75,
+        "ing2inc":"oz",
+        "ing2name":"Lime",
+
+        "ing3oz":0.75,
+        "ing3inc":"oz",
+        "ing3name":"Maraschino",
+
+        "ing4oz":0.75,
+        "ing4inc":"oz",
+        "ing4name":"Green Chartreuse",
+
+        "ing5oz":"",
+        "ing5inc":"oz",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "7":{
+        "drinkName":"Whiskey Sour",
+        "inputs":3,
+        "ing1oz":2,
+        "ing1inc":"oz",
+        "ing1name":"Whiskey",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Lemon",
+
+        "ing3oz":0.25,
+        "ing3inc":"oz",
+        "ing3name":"Simple",
+
+        "ing4oz":"",
+        "ing4inc":"oz",
+        "ing4name":"",
+
+        "ing5oz":"",
+        "ing5inc":"oz",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"",
+        "ing6name":""
+    },
+    "8":{
+        "drinkName":"Daiquiri",
+        "inputs":3,
+        "ing1oz":2,
+        "ing1inc":"oz",
+        "ing1name":"Rum",
+
+        "ing2oz":1,
+        "ing2inc":"oz",
+        "ing2name":"Lime",
+
+        "ing3oz":0.25,
+        "ing3inc":"oz",
+        "ing3name":"Simple",
+
+        "ing4oz":"",
+        "ing4inc":"oz",
+        "ing4name":"",
+
+        "ing5oz":"",
+        "ing5inc":"oz",
+        "ing5name":"",
+
+        "ing6oz":"",
+        "ing6inc":"oz",
+        "ing6name":""
+    }
   }
 }

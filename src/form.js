@@ -3,6 +3,7 @@ import './App.css';
 import heart from '../public/heart.svg';
 import heartfl from '../public/heartfl.svg';
 import clear from '../public/clear.svg';
+import response from '../response.json';
 
 class Form extends Component {
   constructor(props) {
@@ -112,7 +113,6 @@ class Form extends Component {
         "ing6Name":"",
       })
     }
-    console.log(this.state)
 
     if(name === "heart"){
       if(this.state.fav){
@@ -159,8 +159,9 @@ class Form extends Component {
   };
 
   newDrink() {
+
     let totalDrinks = 0;
-    let dashOz = 0.21;
+    let dashOz = 0.021;
     let plural = "";
     let newDrink = "";
     let multiplier = 0;
@@ -183,17 +184,17 @@ class Form extends Component {
     let ing6 = this.state.ing6Oz;
 
     if(this.state.ing1Inc === "dash"){
-      ing1 = parseFloat((ing1 * dashOz).toFixed(1))
+      ing1 = parseFloat((ing1 * dashOz))
     }else if (this.state.ing2Inc === "dash") {
-      ing2 = parseFloat((ing2 * dashOz).toFixed(1))
+      ing2 = parseFloat((ing2 * dashOz))
     }else if (this.state.ing3Inc === "dash") {
-      ing3 = parseFloat((ing3 * dashOz).toFixed(1))
+      ing3 = parseFloat((ing3 * dashOz))
     }else if (this.state.ing4Inc === "dash") {
-      ing4 = parseFloat((ing4 * dashOz).toFixed(1))
+      ing4 = parseFloat((ing4 * dashOz))
     }else if (this.state.ing5Inc === "dash") {
-      ing5 = parseFloat((ing5 * dashOz).toFixed(1))
+      ing5 = parseFloat((ing5 * dashOz))
     }else if (this.state.ing6Inc === "dash") {
-      ing6 = parseFloat((ing6 * dashOz).toFixed(1))
+      ing6 = parseFloat((ing6 * dashOz))
     }
     //DRINKOZ//
     let drinkOz =
@@ -261,6 +262,34 @@ class Form extends Component {
     }else{
       return "grey"
     }
+  }
+
+  shadown(){
+    let cocktail = response.cocktails[Math.ceil(Math.random()*7)]
+    let name = cocktail.drinkName;
+
+    return this.setState({
+      drinkName: [name],
+      inputs:[cocktail.inputs],
+      "ing1Oz": [cocktail.ing1oz],
+      "ing1Inc": [cocktail.ing1inc],
+      "ing1Name":[cocktail.ing1name],
+      "ing2Oz": [cocktail.ing2oz],
+      "ing2Inc": [cocktail.ing2inc],
+      "ing2Name":[cocktail.ing2name],
+      "ing3Oz": [cocktail.ing3oz],
+      "ing3Inc": [cocktail.ing3inc],
+      "ing3Name":[cocktail.ing3name],
+      "ing4Oz": [cocktail.ing4oz],
+      "ing4Inc": [cocktail.ing4inc],
+      "ing4Name":[cocktail.ing4name],
+      "ing5Oz": [cocktail.ing5oz],
+      "ing5Inc": [cocktail.ing5inc],
+      "ing5Name":[cocktail.ing5name],
+      "ing6Oz": [cocktail.ing6oz],
+      "ing6Inc": [cocktail.ing6inc],
+      "ing6Name":[cocktail.ing6name],
+    })
   }
 
   handleFocus(e){
@@ -592,6 +621,9 @@ class Form extends Component {
     }
     return outputs
   }
+  randomState(){
+
+  }
 
   measurement(){
     return(
@@ -667,6 +699,7 @@ class Form extends Component {
             <button id="clear" name="inputs" value="clear" onClick={change} className={` plus `}>
               x
             </button>
+
           </div>
         </div>
         <p/>
