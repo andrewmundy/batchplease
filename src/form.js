@@ -77,6 +77,7 @@ class Form extends Component {
       }
     }
     if(value === "clear"){
+
       return this.setState({
         drinkName:"Drink Name",
         drinkCount:0,
@@ -208,11 +209,11 @@ class Form extends Component {
     if (this.state.drinkIncrement === "Eaches"){
       totalDrinks = this.state.drinkCount
     }else if(this.state.drinkIncrement === "Gallon"){
-      totalDrinks = Math.floor((this.state.drinkCount * 128)/drinkOz)
+      totalDrinks = (this.state.drinkCount * 128)/drinkOz
     }else if(this.state.drinkIncrement === "Punch Bowl"){
-      totalDrinks = Math.floor((this.state.drinkCount * 320)/drinkOz)
+      totalDrinks = (this.state.drinkCount * 320)/drinkOz
     }else if(this.state.drinkIncrement === "Litre"){
-      totalDrinks = Math.floor((this.state.drinkCount * 33.81)/drinkOz)
+      totalDrinks = (this.state.drinkCount * 33.81)/drinkOz
     }
 
     ing1 *= totalDrinks * multiplier;
@@ -566,7 +567,7 @@ class Form extends Component {
     let one = (
       <div className={`result-container ${this.isGrey(1)} ${this.isHidden(1)}`}>
         <div><input id="checkbox1" type="checkbox" name="checkbox" value="1" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing1).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing1).toFixed(2))}</div>
         <div className="inc">{this.increment(1)}</div>
         <div
           className="ing-name"
@@ -576,7 +577,7 @@ class Form extends Component {
     let two = (
       <div className={`result-container ${this.isGrey(2)} ${this.isHidden(2)}`}>
         <div><input id="checkbox2" name="checkbox" value="2" type="checkbox" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing2).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing2).toFixed(2))}</div>
         <div className="inc">{this.increment(2)}</div>
         <div className="ing-name">{state.ing2Name}</div>
       </div>
@@ -584,7 +585,7 @@ class Form extends Component {
     let three = (
       <div className={`result-container ${this.isGrey(3)} ${this.isHidden(3)}`}>
         <div><input id="checkbox3" name="checkbox" value="3" type="checkbox" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing3).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing3).toFixed(2))}</div>
         <div className="inc">{this.increment(3)}</div>
         <div className="ing-name">{state.ing3Name}</div>
       </div>
@@ -592,7 +593,7 @@ class Form extends Component {
     let four = (
       <div className={`result-container ${this.isGrey(4)} ${this.isHidden(4)}`}>
         <div><input id="checkbox4" name="checkbox" value="4" type="checkbox" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing4).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing4).toFixed(2))}</div>
         <div className="inc">{this.increment(4)}</div>
         <div className="ing-name">{state.ing4Name}</div>
       </div>
@@ -600,7 +601,7 @@ class Form extends Component {
     let five = (
       <div className={`result-container ${this.isGrey(5)} ${this.isHidden(5)}`}>
         <div><input id="checkbox5" name="checkbox" value="5" type="checkbox" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing5).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing5).toFixed(2))}</div>
         <div className="inc">{this.increment(5)}</div>
         <div className="ing-name">{state.ing5Name}</div>
       </div>
@@ -608,7 +609,7 @@ class Form extends Component {
     let six = (
       <div className={`result-container ${this.isGrey(6)} ${this.isHidden(6)}`}>
         <div><input id="checkbox6" name="checkbox" value="6" type="checkbox" onClick={this.handleChange}/></div>
-        <div className="oz">{parseFloat((ing6).toFixed(1))}</div>
+        <div className="oz">{parseFloat((ing6).toFixed(5))}</div>
         <div className="inc">{this.increment(6)}</div>
         <div className="ing-name">{state.ing6Name}</div>
       </div>
