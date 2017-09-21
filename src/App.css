@@ -47,7 +47,8 @@ button {
   cursor: pointer;
   transition: width 0.2s; }
 
-.heart:active, .heart:focus {
+.heart:active,
+.heart:focus {
   width: 2.4rem; }
 
 .hidden {
@@ -86,7 +87,8 @@ input[type='checkbox']:checked {
 .result-container {
   display: grid;
   width: 100%;
-  grid-template-columns: 25% 15% 20% 4fr;
+  grid-template-columns: 5% 25% 20% 55%;
+  grid-column-gap: 10px;
   grid-template-rows: auto auto auto;
   grid-template-areas: "button oz inc name" "button oz inc name" "button oz inc name" "button oz inc name" "button oz inc name" "button oz inc name"; }
 
